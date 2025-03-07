@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2018 Chion Tang <tech@chionlab.moe>
+# Copyright (C) 2022 Chion Tang <tech@chionlab.moe>
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,7 +8,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=fullconenat
-PKG_RELEASE:=6
+PKG_RELEASE:=10
 
 PKG_SOURCE_DATE:=2022-02-13
 PKG_SOURCE_PROTO:=git
@@ -28,7 +28,7 @@ define Package/iptables-mod-fullconenat
   SECTION:=net
   CATEGORY:=Network
   TITLE:=FULLCONENAT iptables extension
-  DEPENDS:=+iptables +kmod-ipt-fullconenat
+  DEPENDS:=+libxtables +kmod-ipt-fullconenat
 endef
 
 define Package/iptables-mod-fullconenat/install
@@ -44,14 +44,13 @@ define KernelPackage/ipt-fullconenat
 	CONFIG_NF_CONNTRACK_EVENTS=y \
 	CONFIG_NF_CONNTRACK_CHAIN_EVENTS=y
   FILES:=$(PKG_BUILD_DIR)/xt_FULLCONENAT.ko
+  AUTOLOAD:=$(call AutoProbe,xt_FULLCONENAT)
 endef
 
 include $(INCLUDE_DIR)/kernel-defaults.mk
 
 define Build/Compile
-	+$(MAKE) $(PKG_JOBS) -C "$(LINUX_DIR)" \
-		CROSS_COMPILE="$(TARGET_CROSS)" \
-		ARCH="$(LINUX_KARCH)" \
+	+$(KERNEL_MAKE) $(PKG_JOBS) \
 		M="$(PKG_BUILD_DIR)" \
 		EXTRA_CFLAGS="$(BUILDFLAGS)" \
 		modules

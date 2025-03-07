@@ -1,16 +1,16 @@
 --- a/arch/arm64/boot/dts/rockchip/Makefile
 +++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -9,6 +9,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-ev
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2c.dtb
+@@ -11,6 +11,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-a1
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-evb.dtb
  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2s.dtb
  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-orangepi-r1-plus.dtb
 +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-orangepi-r1-plus-lts.dtb
  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock64.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock-pi-e.dtb
  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-roc-cc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3368-evb-act8846.dtb
 --- /dev/null
 +++ b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
-@@ -0,0 +1,66 @@
+@@ -0,0 +1,71 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
 + * Copyright (c) 2016 Xunlong Software. Co., Ltd.
@@ -53,6 +53,11 @@
 +			compatible = "ethernet-phy-id4f51.e91b",
 +				     "ethernet-phy-ieee802.3-c22";
 +			reg = <0>;
++
++ 			motorcomm,clk-out-frequency-hz = <125000000>;
++			motorcomm,keep-pll-enabled;
++			motorcomm,auto-sleep-disabled;
++
 +			pinctrl-0 = <&eth_phy_reset_pin>;
 +			pinctrl-names = "default";
 +			reset-assert-us = <15000>;

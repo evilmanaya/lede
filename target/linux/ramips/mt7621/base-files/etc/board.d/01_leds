@@ -58,6 +58,13 @@ gnubee,gb-pc2)
 	ucidef_set_led_netdev "ethblack_act" "ethblack act" "green:ethblack_act" "ethblack" "tx rx"
 	ucidef_set_led_netdev "ethblue_act" "ethblue act" "green:ethblue_act" "ethblue" "tx rx"
 	;;
+huasifei,mt7621dtu)
+	ucidef_set_led_switch "lan3" "lan3" "amber:4g" "switch0" "0x08"
+	ucidef_set_led_switch "lan4" "lan3" "amber:5g" "switch0" "0x10"
+	;;
+huasifei,ws1208v2)
+	ucidef_set_led_netdev "wwan0" "wwan0" "green:cellular" "wwan0" "link tx rx"
+	;;
 linksys,e5600)
 	ucidef_set_led_netdev "wan" "wan link" "blue:wan" "wan" "link"
 	;;
@@ -131,10 +138,6 @@ xiaomi,redmi-router-ac2100)
 	;;
 youhua,wr1200js)
 	ucidef_set_led_netdev "internet" "INTERNET" "green:wan" "wan"
-	;;
-zte,e8820s)
-	ucidef_set_led_netdev "wlan2g" "WiFi 2.4GHz" "white:wlan2g" "ra0"
-	ucidef_set_led_netdev "wlan5g" "WiFi 5GHz" "white:wlan5g" "rai0"
 	;;
 esac
 
